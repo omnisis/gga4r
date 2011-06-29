@@ -1,7 +1,6 @@
 require "yaml"
 require "logger"
 require "rubygems"
-require "active_support"
 require "active_support/core_ext"
 
 class GeneticAlgorithm
@@ -42,6 +41,8 @@ class GeneticAlgorithm
   def best_fit(num_generation = -1)
     raise "Generation not generated still num generations = #{num_generations}" if num_generation > num_generations  
     generation = @generations[num_generation]
+    @logger.debug("generation class: #{generation.class}") if @logger
+    p generation
     max_fitness = generation.collect { |chromosome| chromosome.fitness }.max
     generation.select { |chromosome| chromosome.fitness == max_fitness }
   end
@@ -109,7 +110,8 @@ class GeneticAlgorithm
     g.each do |chromosome|
       i += 1
       @logger.debug "Evaluating chromosome #{i}:" if @logger
-      @logger.debug "#{chromosome.stats.join("\n")}" if @logger
+      # @logger.debug "#{chromosome.stats.join("\n")}" if @logger
+      @logger.debug "Stats -- fixme!" if @logger
       threads << Thread.new(chromosome) do |t_chromosome|
         t_chromosome.fitness
         @logger.debug "Thread finished #{Thread.current.object_id} - #{Thread.current.status}" if @logger
