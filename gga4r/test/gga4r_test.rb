@@ -26,12 +26,12 @@ class Gga4rTest < Test::Unit::TestCase
     first_pop_even = IndividualStub.create_random_population(30)
     ga = GeneticAlgorithm.new(first_pop_even)
     new_pop = ga.recombination!
-    assert true, first_pop_even.size < new_pop.size
+    assert first_pop_even.size < new_pop.size
     
     first_pop_odd = IndividualStub.create_random_population(31)
     ga = GeneticAlgorithm.new(first_pop_odd)
     new_pop = ga.recombination!
-    assert true, first_pop_odd.size < new_pop.size
+    assert first_pop_odd.size < new_pop.size
     
   end
 end

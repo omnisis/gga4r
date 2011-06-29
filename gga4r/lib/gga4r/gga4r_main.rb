@@ -2,6 +2,7 @@ require "yaml"
 require "logger"
 require "rubygems"
 require "active_support"
+require "active_support/core_ext"
 
 class GeneticAlgorithm
   attr_reader :generations, :p_combination, :p_mutation
